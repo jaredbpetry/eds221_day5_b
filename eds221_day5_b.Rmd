@@ -1,0 +1,30 @@
+---
+title: "eds221_day5_b"
+author: "Jared Petry"
+date: "2022-08-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(palmerpenguins)
+library(tidyverse)
+```
+
+```{r}
+#we want years to be stored as a character rather than numeric 
+penguins_year_chr <- penguins |> 
+  mutate(year = as.character(year))
+
+#if we want it back the other way 
+penguins_year_num <- penguins |> 
+  mutate(year = as.numeric(year))  #now year is numeric again 
+
+#filter data by rows to create a subset only for adele and chinstrap penguins
+penguins_ad_ch <- penguins_year_num |> 
+  filter(species %in% c("Adelie", "Chinstrap")) # %in% asks is this in this row? if so keep it
+
+penguins_ad_ch <- penguins_year_num |> 
+  filter(species == c("Adelie", "Chinstrap")) # different than '==' operator
+```
+
